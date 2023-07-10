@@ -1,1 +1,1 @@
-ls | tail | sort -r
+ls -t | head
