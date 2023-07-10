@@ -1,1 +1,1 @@
-ls -t | head
+find ./ -type f | ls -t | head
