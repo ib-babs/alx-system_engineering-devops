@@ -2,7 +2,7 @@
 # displays:
 # The content of the current directory
 # In a list format
-temp=$(ls)
+temp=$(ls PWD)
 for i in  $temp
 do
     echo "$i" | cut -d"-" -f2
