@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# A script displaying the content of the file /etc/passwd using story.
+
+
+if [ "$EUID" -ne 0 ]
+then
+    echo "Please run this script as root"
+    exit 1
+fi
+while IFS= read -r line
+do
+    username=$(echo "$line" | cut  -d: -f1)
+    pscode=$(echo "$line" | cut -d: -f2)
+    userId=$(echo "$line" | cut  -d: -f3)
+    gid=$(echo "$line" | cut  -d: -f4)
+    userInfo=$(echo "$line" | cut  -d: -f5)
+    homepath=$(echo "$line" | cut  -d: -f6)
+    cmd=$(echo "$line" | cut  -d: -f7)
+
+    story="The user $username is part of the $gid gang, lives in $homepath and rides $cmd. $userId's place is protected by the passcode $pscode, more info about the user here: $userInfo"
+    echo "$story"
+done < /etc/passwd

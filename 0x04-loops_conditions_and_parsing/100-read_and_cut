@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Write a Bash script that displays the content of the file /etc/passwd.
+# username
+# user id
+# Home directory path for the user
+
+if [ "$EUID" -ne 0 ]
+then
+    echo "Please run this script as root"
+    exit 1
+fi
+while IFS= read -r line
+do
+    username=$(echo "$line" | cut  -d: -f1)
+    userId=$(echo "$line" | cut  -d: -f3)
+    homepath=$(echo "$line" | cut  -d: -f6)
+    echo "$username:$userId:$homepath"
+done < /etc/passwd
