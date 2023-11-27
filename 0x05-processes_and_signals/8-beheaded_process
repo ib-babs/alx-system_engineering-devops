@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# Stop loop `pkill`
+pkill -KILL -f ./7-highlander
