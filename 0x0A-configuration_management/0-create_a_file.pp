@@ -1,5 +1,8 @@
-file {'/tmp/school':
-ensure  => file,
+# create_a_file.pp
+
+file { '/tmp/school':
+ensure  => 'present',
+path    => '/tmp/school',
 mode    => '0744',
 owner   => 'www-data',
 group   => 'www-data',
