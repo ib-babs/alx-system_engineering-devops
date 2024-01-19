@@ -1,10 +1,6 @@
-# install_a_package.pp
-package {'python3-pip':
-ensure => installed
-}
+# install_a_package.pp 'flask' using pip3
 
-exec {'1-install_a_package':
-    command => '/usr/bin/pip3 install flask==2.1.0',
-    path    => '/usr/bin/',
-    require => Package['python3-pip'],
+package { 'flask':
+    ensure   => '2.1.0',
+    provider => 'python3-pip'
 }
