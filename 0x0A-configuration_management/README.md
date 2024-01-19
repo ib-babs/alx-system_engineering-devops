@@ -15,6 +15,7 @@ Thanks to Puppet, we were able to restore our infrastructure to normal operation
 
 Obviously writing Puppet code for your infrastructure requires an investment of time and energy, but in the long term, it is for sure a must-have.
 </blockqoute>
+<br><hr>
 <img src="https://s3.amazonaws.com/intranet-projects-files/holbertonschool-sysadmin_devops/292/4i8il3B.gif" alt="Sylvain Kalache got worked up">
 By <bold>Sylvain Kalache</bold>
 
@@ -28,7 +29,7 @@ $ apt-get install -y ruby=1:2.7+1 --allow-downgrades
 $ apt-get install -y ruby-augeas
 $ apt-get install -y ruby-shadow
 $ apt-get install -y puppet
-</code>s
+</code>
 
 You do not need to attempt to upgrade versions. This project is simply a set of tasks to familiarize you with the basic level syntax which is virtually identical in newer versions of Puppet.
 Puppet 5 Docs
