@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Web servers are the piece of software generating and serving HTML pages, let’s install one!
+
+# Requirements:
+
+# Install nginx on your web-01
+# Nginx should be listening on port 80
+# When querying Nginx at its root / with a GET request (requesting a page) using curl, it must return a page that contains the string Hello World!
+
+if dpkg -l | grep -w "nginx" >/dev/null 2>&1; then
+    echo -q >/dev/null 2>&1
+else
+    sudo apt install nginx
+fi
+
+# nginx config path
+nginx_conf="/etc/nginx/sites-available/default"
+# Default webpage on GET /
+nginx_html_default="/var/www/html/index.nginx-debian.html"
+# Make nginx listen to port 80
+sudo sed -i 's/listen [0-9]\+ \(default_server\);/listen 80 default_server;/g' "$nginx_conf"
+# Change the default media display
+sudo sed -i 's/.*/Hello World!/g' "$nginx_html_default"
+
+# Restart the ngincx server
+sudo service nginx restart
