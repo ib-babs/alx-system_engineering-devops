@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
-
 # Install and configure HAproxy on your lb-01 server.
+
+# Enable a `dedicated PPA` with the following command:
+sudo apt-get install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.8
+
+# Installing haproxy
+sudo apt-get install haproxy=2.8.\*
 
 printf %s "
 frontend http_front
