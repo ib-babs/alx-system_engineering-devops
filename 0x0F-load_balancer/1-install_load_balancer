@@ -1,29 +1,59 @@
 #!/usr/bin/env bash
-# Install and configure HAproxy on your lb-01 server.
-
-backend="\
-frontend http_front
+# Configure Nginx so that its HTTP response contains
+# a custom header
+#
+balancer="\
+frontend haproxy_balancer
     bind *:80
     mode http
-    default_backend http_back
-
-backend http_back
+    default_backend webservers
+    
+backend webservers
     balance roundrobin
     server 465161-web-01 54.167.86.214:80 check
     server 465161-web-02 100.25.38.121:80 check
 "
-# Update and upgrade the system
-sudo apt-get -y update
-sudo apt-get -y upgrade
+# Update packages
+apt-get -y update
+apt-get -y upgrade
 
-# # Enable a `dedicated PPA` with the following command:
-sudo apt-get install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.8
+# Add HAProxy PPA
+apt-get -y install software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-2.5
+apt-get -y update
 
-# # Installing haproxy
-sudo apt-get install haproxy
+# Install HAProxy
+apt-get -y install haproxy
 cp -a /etc/haproxy/haproxy.cfg{,.orig}
+echo "$balancer" >> /etc/haproxy/haproxy.cfg
+service haproxy restart
 
-echo "$backend" >>/etc/haproxy/haproxy.cfg >/dev/null 2>&1
+# #!/usr/bin/env bash
+# # Install and configure HAproxy on your lb-01 server.
 
-sudo service haproxy restart
+# backend="\
+# frontend http_front
+#     bind *:80
+#     mode http
+#     default_backend http_back
+
+# backend http_back
+#     balance roundrobin
+#     server 465161-web-01 54.167.86.214:80 check
+#     server 465161-web-02 100.25.38.121:80 check
+# "
+# # Update and upgrade the system
+# sudo apt-get -y update
+# sudo apt-get -y upgrade
+
+# # # Enable a `dedicated PPA` with the following command:
+# sudo apt-get install --no-install-recommends software-properties-common
+# sudo add-apt-repository ppa:vbernat/haproxy-2.8
+
+# # # Installing haproxy
+# sudo apt-get install haproxy
+# cp -a /etc/haproxy/haproxy.cfg{,.orig}
+
+# echo "$backend" >>/etc/haproxy/haproxy.cfg >/dev/null 2>&1
+
+# sudo service haproxy restart
