@@ -37,6 +37,6 @@ log_bin         = /var/log/mysql/mysql-bin.log
 #bind-address   = 127.0.0.1
 
 # Replication for the MySQL database named tyrell_corp
-binlog_do_db = tyrell_corp
+binlog-do-db = tyrell_corp
 # Disabling symbolic-links is recommended to prevent assorted security risks
 symbolic-links=0
