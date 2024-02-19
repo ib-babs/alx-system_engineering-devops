@@ -26,6 +26,7 @@ if __name__ == "__main__":
             id['id']:  []}
         for task in all_task_json:
             output[id['id']].append({"task": task['title'],
-                                     "completed": task['completed'], 'username': employee_json['username'],
+                                     "completed": task['completed'],
+                                     'username': employee_json['username'],
                                      })
         json.dump(output, file_csv)
