@@ -17,7 +17,6 @@ if __name__ == "__main__":
 
     # Requests
     employee = requests.get(url=user_url, params=id)
-    finished_task = requests.get(url=todo_url, params=completed_todo)
     all_task = requests.get(url=todo_url, params=total_todo)
 
     with open(f'{sys.argv[1]}.csv', 'w') as file_csv:
