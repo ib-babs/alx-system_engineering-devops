@@ -26,6 +26,6 @@ if __name__ == "__main__":
         employee_json = employee.json()[0]
         for task in all_task_json:
             selected_part = (
-                task['userId'], employee_json['name'], task['completed'],
+                task['userId'], employee_json['username'], task['completed'],
                 task['title'])
             csv_writer.writerow(selected_part)
