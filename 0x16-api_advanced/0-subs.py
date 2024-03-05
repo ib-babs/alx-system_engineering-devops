@@ -7,9 +7,11 @@ the function should return 0."""
 
 import requests
 
+
 def number_of_subscribers(subreddit):
     """Get the number of the REDDIT subscribers"""
-    subscribers = requests.get('https://www.reddit.com/r/{}/about.json'.format(subreddit), headers={
+    url = 'https://www.reddit.com/r/{}/about.json'.format(subreddit)
+    subscribers = requests.get(url, headers={
         'User-Agent': 'Mozilla'
     }, allow_redirects=False)
 
