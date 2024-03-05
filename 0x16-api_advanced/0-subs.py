@@ -2,8 +2,7 @@
 """Reddit API - Application Programming Interface
 Queries the Reddit API and returns the number of
 subscribers (not active users, total subscribers)
-for a given subreddit. If an invalid subreddit is given,
-the function should return 0."""
+for a given subreddit."""
 
 import requests
 
@@ -17,8 +16,7 @@ def number_of_subscribers(subreddit):
         "User-Agent": '0x16-api_advanced:project:\
 v1.0.0 (by /u/drkhalil05)'
     }
-    client = requests.session()
-    subscribers = client.get(url, headers=headers, allow_redirects=False)
+    subscribers = requests.get(url, headers=headers, allow_redirects=False)
 
     if subscribers.status_code == 200:
         return (subscribers.json()['data']['subscribers'])
