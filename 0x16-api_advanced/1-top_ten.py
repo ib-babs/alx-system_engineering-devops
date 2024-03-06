@@ -18,9 +18,12 @@ v1.0.0 (by /u/drkhalil05)'
     response = requests.get(url, headers=headers, allow_redirects=False)
 
     if response.status_code == 200:
-        data = response.json()
-        titles = [r['data']['title'] for r in data['data']['children']]
-        for r in titles:
-            print(r)
+        try:
+            data = response.json()
+            titles = [r['data']['title'] for r in data['data']['children']]
+            for r in titles:
+                print(r)
+        except Exception as e:
+            print(None)
     else:
         print(None)
