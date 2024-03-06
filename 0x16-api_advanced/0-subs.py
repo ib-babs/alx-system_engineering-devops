@@ -20,6 +20,8 @@ v1.0.0 (by /u/drkhalil05)'})
             result = sub.get('data').get('subscribers')
             if result is not None:
                 return (result)
+            else:
+                return 0
         except Exception as e:
             pass
     else:
