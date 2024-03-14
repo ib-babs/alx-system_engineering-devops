@@ -1,0 +1,16 @@
+[Unit]
+Description=Gunicorn instance to server Airbnb content
+After=network.target
+
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=AirBnB_clone_v4/web_dynamic/2-hbnb.py
+ExecStart=/home/ubuntu/.local/bin/gunicorn -w 3 -b 127.0.0.1:5003 2-hbnb:app
+
+StandardOutput=file:/tmp/airbnb-access.log
+StandardInput=file://tmp/airbnb-error.log
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
